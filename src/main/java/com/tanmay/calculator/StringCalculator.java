@@ -18,6 +18,10 @@ public class StringCalculator {
             if (num < 0) {
                 negatives.add(number);
             }
+
+            if(num > 1000) {
+                continue;
+            }
             sum += num;
         }
 

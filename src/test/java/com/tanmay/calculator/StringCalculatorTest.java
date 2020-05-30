@@ -40,4 +40,10 @@ public class StringCalculatorTest {
         assertEquals(StringCalculator.add("1\n2\n3"), 6);
         assertEquals(StringCalculator.add("1\n2\n3\n"), 6);
     }
+
+    @Test
+    public void shouldReturnSumOfTwoNumbersWithCustomDelimiter() {
+        assertEquals(StringCalculator.add("//;\n1;2"), 3);
+        assertEquals(StringCalculator.add("//|\n1|2"), 3);
+    }
 }

@@ -4,11 +4,11 @@ public class StringCalculator {
 
     public static int add(String numbers) {
         if (numbers == null || numbers.length() == 0) return 0;
-
-        String[] nums = numbers.split("[\n,]");
         int sum = 0;
 
-        for (String number : nums) {
+        CalculatorContext context = new CalculatorContext(numbers);
+        String[] numberList = context.getNumbers();
+        for (String number : numberList) {
             sum += Integer.parseInt(number);
         }
 

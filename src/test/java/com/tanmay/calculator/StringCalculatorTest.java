@@ -24,5 +24,13 @@ public class StringCalculatorTest {
     @Test
     public void shouldReturnSumOfTwoNumbersWithTwoArgumets() {
         assertEquals(StringCalculator.add("1,2"), 3);
+        assertEquals(StringCalculator.add("1,2,"), 3);
     }
+
+    @Test
+    public void shouldReturnSumOfTwoNumbersWithMultipleArguments() {
+        assertEquals(StringCalculator.add("1,2,3"), 6);
+        assertEquals(StringCalculator.add("1,2,3,4,5,6,"), 21);
+    }
+
 }

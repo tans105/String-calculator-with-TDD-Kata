@@ -12,13 +12,13 @@ public class CalculatorContext {
     }
 
     private void init() {
+        String[] chunks = text.split("\n");
         if (text.startsWith("//")) {
             isCustom = true;
-            String[] chunks = text.split("\n");
-            delimiter = "[" + chunks[0].substring(2) + "]";
+            delimiter = "[" + getCustomDelimiter(chunks[0]) + "]";
             effectiveString = chunks[1];
         } else {
-            delimiter = "[\n,]";
+            delimiter = "[\n" + getCustomDelimiter(chunks[0]) + "]";
             effectiveString = text;
         }
     }
@@ -46,5 +46,13 @@ public class CalculatorContext {
 
     public String[] getNumbers() {
         return effectiveString.split(delimiter);
+    }
+
+
+    private String getCustomDelimiter(String line) {
+        if (isCustom) {
+            return line.substring(2);
+        }
+        return "[\n,]";
     }
 }

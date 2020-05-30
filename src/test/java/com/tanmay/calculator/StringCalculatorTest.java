@@ -3,6 +3,7 @@ package com.tanmay.calculator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class StringCalculatorTest {
 
@@ -45,5 +46,16 @@ public class StringCalculatorTest {
     public void shouldReturnSumOfTwoNumbersWithCustomDelimiter() {
         assertEquals(StringCalculator.add("//;\n1;2"), 3);
         assertEquals(StringCalculator.add("//|\n1|2"), 3);
+    }
+
+    @Test
+    public void shouldThrowAnExceptionWithNegative() {
+        try {
+            StringCalculator.add("//;\n-1;4");
+        }
+        catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            assertEquals("negatives not allowed -1", e.getMessage());
+        }
     }
 }

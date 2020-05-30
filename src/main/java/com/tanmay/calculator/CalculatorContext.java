@@ -1,5 +1,8 @@
 package com.tanmay.calculator;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CalculatorContext {
     private String text;
     private boolean isCustom = false;
@@ -15,12 +18,11 @@ public class CalculatorContext {
         String[] chunks = text.split("\n");
         if (text.startsWith("//")) {
             isCustom = true;
-            delimiter = "[" + getCustomDelimiter(chunks[0]) + "]";
             effectiveString = chunks[1];
         } else {
-            delimiter = "[\n" + getCustomDelimiter(chunks[0]) + "]";
             effectiveString = text;
         }
+        delimiter = getCustomDelimiter(chunks[0]);
     }
 
     public String getDelimiter() {
@@ -50,8 +52,22 @@ public class CalculatorContext {
 
 
     private String getCustomDelimiter(String line) {
+        Set<Character> charSet = new HashSet<>();
         if (isCustom) {
-            return line.substring(2);
+            line = line.substring(2);
+            StringBuilder multilineDelimiter = new StringBuilder();
+            for (Character delimiter : line.toCharArray()) {
+                multilineDelimiter.append("[");
+                multilineDelimiter.append(delimiter);
+                multilineDelimiter.append("]");
+                charSet.add(delimiter);
+            }
+
+            if (charSet.size() == 1) {
+                return multilineDelimiter.toString();
+            }
+
+            return "[" + line + "]";
         }
         return "[\n,]";
     }

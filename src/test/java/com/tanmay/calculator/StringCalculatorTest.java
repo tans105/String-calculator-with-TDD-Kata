@@ -66,4 +66,16 @@ public class StringCalculatorTest {
         assertEquals(StringCalculator.add("1,2000,3"), 4);
         assertEquals(StringCalculator.add("1\n2\n3\n1020"), 6);
     }
+
+    @Test
+    public void shouldHandleMultipleSingleCharacterDelimiter() {
+        assertEquals(StringCalculator.add("//;*\n1;2*3"), 6);
+        assertEquals(StringCalculator.add("//|*;\n1;2*3|4"), 10);
+    }
+
+    @Test
+    public void shouldHandleMultipleCharacterDelimiters() {
+        assertEquals(StringCalculator.add("//***\n1***2***3"), 6);
+        assertEquals(StringCalculator.add("//|||\n1|||2|||3|||4"), 10);
+    }
 }

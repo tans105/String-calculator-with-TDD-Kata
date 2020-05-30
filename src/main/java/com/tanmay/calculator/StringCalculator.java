@@ -12,6 +12,7 @@ public class StringCalculator {
         List<String> negatives = new ArrayList<>();
 
         CalculatorContext context = new CalculatorContext(numbers);
+        System.out.println(context);
         String[] numberList = context.getNumbers();
         for (String number : numberList) {
             int num = Integer.parseInt(number);

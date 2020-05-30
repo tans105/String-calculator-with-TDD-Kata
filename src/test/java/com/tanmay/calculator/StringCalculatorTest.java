@@ -33,4 +33,11 @@ public class StringCalculatorTest {
         assertEquals(StringCalculator.add("1,2,3,4,5,6,"), 21);
     }
 
+    @Test
+    public void shouldReturnSumOfTwoNumbersWithNewLineDelimiter() {
+        assertEquals(StringCalculator.add("1\n"), 1);
+        assertEquals(StringCalculator.add("1\n2,3"), 6);
+        assertEquals(StringCalculator.add("1\n2\n3"), 6);
+        assertEquals(StringCalculator.add("1\n2\n3\n"), 6);
+    }
 }
